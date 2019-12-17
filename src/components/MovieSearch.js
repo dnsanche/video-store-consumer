@@ -13,35 +13,35 @@ export class MovieSearch extends Component {
     };
   }
 
-  componentDidMount() {
-    const KEY = "da1352497a26ef405ee2c9c2abb507be"
-    const query = this.state.searchTerm
-    const searchMovies = `https://api.themoviedb.org/3/search/movie?api_key=${KEY}&query=${query}`
-    axios.get(searchMovies).then((response) => {
-      this.setState({
-        filteredList: response.data,
-      });
-    })
-    .catch((error) => {
-      this.setState({ error: error.message });    
-    });
-  }
-
   onSearchChange = (event) => {
-    const value = event.target;
     this.setState({
-      searchTerm: value
+      searchTerm: event.target.value
     })  
   }
+
+  // MovieSearch() {
+  //   event.preventDefault();
+  //   const KEY = "da1352497a26ef405ee2c9c2abb507be"
+  //   const query = this.state.searchTerm
+  //   const searchMovies = `https://api.themoviedb.org/3/search/movie?api_key=${KEY}&query=${query}`
+  //   axios.get(searchMovies).then((response) => {
+  //     this.setState({
+  //       filteredList: response.data.results,
+  //     });
+  //   })
+  //   .catch((error) => {
+  //     this.setState({ error: error.message });    
+  //   });
+  // }
 
   onSubmit = (event) => {
     event.preventDefault();
     const KEY = "da1352497a26ef405ee2c9c2abb507be"
     const query = this.state.searchTerm
     const searchMovies = `https://api.themoviedb.org/3/search/movie?api_key=${KEY}&query=${query}`
-    axios.get(searchMovies).then((response) => {
+    axios.get(searchMovies).then((response) => { 
       this.setState({
-        filteredList: response.data,
+        filteredList: response.data.results,
       });
     })
     .catch((error) => {
@@ -50,7 +50,6 @@ export class MovieSearch extends Component {
   }
 
   render () {
-
     const movieSearch = this.state.filteredList.map((movie, i) => {
       return (
         <div>
@@ -59,25 +58,21 @@ export class MovieSearch extends Component {
           <p>Id: {movie.id}</p>
           <p>Overview: {movie.overview}</p>
           <p>Release Date: {movie.release_date}</p>
-          <p>External Id:{movie.external_id}</p>
         </div>
-      )})
+      )});
 
     return (
       <form>
         <section>
           <input
-          type="text"
-          name="search"
-          placeholder="Search Movie Title"
-          value={this.state.searchTerm}
-          onChange={this.onSearchChange}
+            type="text"
+            placeholder="Search Movie Title"
+            onChange={this.onSearchChange}
+            value={this.state.searchTerm}
           /> 
-          <input onClick ={this.componentDidMount} type="submit" value="Submit" />
+          <input onClick ={this.onSubmit} type="submit" value="Submit" />
         </section>
-        <section>
-          {movieSearch}
-        </section> 
+        {movieSearch}
       </form>
     )
   }
