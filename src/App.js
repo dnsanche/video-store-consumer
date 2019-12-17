@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 // import { Link } from 'react-router-dom'
 import Customers from './components/Customers.js';
-import Movies from './components/Movies.js';
+import Library from './components/Library.js';
 import MovieSearch from './components/MovieSearch';
 
 
@@ -54,7 +54,7 @@ class App extends Component {
             <Customers />
           </Route>
           <Route path="/library">
-            <Movies />
+            <Library />
           </Route>
           <Route path="/movie_search">
             <MovieSearch />

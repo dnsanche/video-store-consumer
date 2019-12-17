@@ -19,29 +19,13 @@ export class MovieSearch extends Component {
     })  
   }
 
-  // MovieSearch() {
-  //   event.preventDefault();
-  //   const KEY = "da1352497a26ef405ee2c9c2abb507be"
-  //   const query = this.state.searchTerm
-  //   const searchMovies = `https://api.themoviedb.org/3/search/movie?api_key=${KEY}&query=${query}`
-  //   axios.get(searchMovies).then((response) => {
-  //     this.setState({
-  //       filteredList: response.data.results,
-  //     });
-  //   })
-  //   .catch((error) => {
-  //     this.setState({ error: error.message });    
-  //   });
-  // }
-
   onSubmit = (event) => {
     event.preventDefault();
-    const KEY = "da1352497a26ef405ee2c9c2abb507be"
-    const query = this.state.searchTerm
-    const searchMovies = `https://api.themoviedb.org/3/search/movie?api_key=${KEY}&query=${query}`
-    axios.get(searchMovies).then((response) => { 
+    const searchMoviesURL = 'http://localhost:3000/movies'
+    axios.get(searchMoviesURL, {params: {query: this.state.searchTerm}}).then((response) => { 
+      console.log("response:", response)
       this.setState({
-        filteredList: response.data.results,
+        filteredList: response.data,
       });
     })
     .catch((error) => {
