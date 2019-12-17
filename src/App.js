@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 // import { Link } from 'react-router-dom'
 import Customers from './components/Customers.js';
-
+import Movies from './components/Movies.js';
 
 class App extends Component {
   render() {
@@ -24,6 +24,9 @@ class App extends Component {
           <li>
             <Link to="/customers">Customers</Link>
           </li>
+          <li>
+            <Link to="/library">Movies</Link>
+          </li>
         </ul>
       </nav>
 
@@ -31,7 +34,12 @@ class App extends Component {
           <Route path="/customers">
             <Customers />
           </Route>
-        
+          <Route path="/library">
+            <Movies />
+          </Route>
+          <Route path="/" >
+            <p>Home Page</p>
+          </Route>
       </Switch>
       </div>
       </Router>
