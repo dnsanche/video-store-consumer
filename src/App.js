@@ -25,7 +25,7 @@ class App extends Component {
             <Link to="/customers">Customers</Link>
           </li>
           <li>
-            <Link to="/movies">Movies</Link>
+            <Link to="/library">Movies</Link>
           </li>
         </ul>
       </nav>
@@ -34,7 +34,7 @@ class App extends Component {
           <Route path="/customers">
             <Customers />
           </Route>
-          <Route path="/movies">
+          <Route path="/library">
             <Movies />
           </Route>
           <Route path="/" >

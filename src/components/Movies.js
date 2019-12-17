@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-export class Movies extends Component {
+export class Library extends Component {
   constructor(props) {
     super(props);
 
@@ -47,4 +47,4 @@ export class Movies extends Component {
   }
 }
 
-export default Movies
+export default Library
