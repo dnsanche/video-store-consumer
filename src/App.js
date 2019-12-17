@@ -10,13 +10,32 @@ import {
 // import { Link } from 'react-router-dom'
 import Customers from './components/Customers.js';
 import Movies from './components/Movies.js';
+import MovieSearch from './components/MovieSearch';
+
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      movieList: [],
+    };
+  }
+
+  /*searchList = () => {
+    return this.state.movieList.filter((movie) => {
+      const text = (`${movie.title}`).toLowerCase();
+
+      return text.includes(this.state.searchTerm.toLowerCase());
+    });
+  } */
+
   render() {
     return (
       <Router>
       <div>
       <nav>
+        <MovieSearch />
         <ul>
           <li>
             <Link to="/">Home</Link>
@@ -25,7 +44,7 @@ class App extends Component {
             <Link to="/customers">Customers</Link>
           </li>
           <li>
-            <Link to="/library">Movies</Link>
+            <Link to="/library">Library</Link>
           </li>
         </ul>
       </nav>
@@ -36,6 +55,9 @@ class App extends Component {
           </Route>
           <Route path="/library">
             <Movies />
+          </Route>
+          <Route path="/movie_search">
+            <MovieSearch />
           </Route>
           <Route path="/" >
             <p>Home Page</p>
