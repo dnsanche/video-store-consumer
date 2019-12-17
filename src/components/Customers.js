@@ -28,17 +28,17 @@ export class Customers extends Component {
     const customerInfo = this.state.customers.map((customer, i) => {
       return (
       <div>
-      <h1>Customer #{i + 1}</h1>
-      <p>Id: {customer.id}</p>
-      <p>Name: {customer.name}</p>
-      <p>Address: {customer.address}</p>
-      <p>City: {customer.city}</p>
-      <p>State: {customer.state}</p>
-      <p>Postal Code: {customer.postal_code}</p>
-      <p>Phone: {customer.phone}</p>
-      <p>Account Credit: {customer.account_credit}</p>
-      <p>Movies Checked Out: {customer.movies_checked_out_count}</p>
-      <br></br>
+        <h1 key={i}>Customer #{i + 1}</h1>
+        <p>Id: {customer.id}</p>
+        <p>Name: {customer.name}</p>
+        <p>Address: {customer.address}</p>
+        <p>City: {customer.city}</p>
+        <p>State: {customer.state}</p>
+        <p>Postal Code: {customer.postal_code}</p>
+        <p>Phone: {customer.phone}</p>
+        <p>Account Credit: {customer.account_credit}</p>
+        <p>Movies Checked Out: {customer.movies_checked_out_count}</p>
+        <br></br>
       </div>
       )
     });
