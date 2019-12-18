@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Customer from './Customer.js';
+import './Customers.css';
 
 export class Customers extends Component {
   constructor(props) {
@@ -8,8 +9,17 @@ export class Customers extends Component {
 
     this.state = {
       customers: [],
+      selectedCustomer: {},
       error: '',
     };
+  }
+
+  onSelect = (selectedCust) => {
+    this.setState({
+      selectedCustomer: selectedCust
+    });  
+    
+    this.props.selectedCust(selectedCust)
   }
 
   componentDidMount() {
@@ -28,12 +38,14 @@ export class Customers extends Component {
 
     const customerInfo = this.state.customers.map((customer, i) => {
       return (
-      <Customer i={i} customer={customer}/>
+      <div>
+        <Customer i={i} customer={customer} selectedCust={this.onSelect}/>
+      </div>
       )
     });
 
     return (
-      <div>
+      <div className="customers">
         {customerInfo}
       </div>
     )

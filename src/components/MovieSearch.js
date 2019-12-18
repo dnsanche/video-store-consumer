@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-
 export class MovieSearch extends Component {
   constructor(props) {
     super(props);
@@ -31,6 +30,8 @@ export class MovieSearch extends Component {
     .catch((error) => {
       this.setState({ error: error.message });    
     });
+
+    this.setState({  searchTerm: '' });
   }
 
   render () {
