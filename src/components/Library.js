@@ -38,7 +38,6 @@ export class Library extends Component {
       )
     })
 
-
     return (
       <div>
         {movieInfo}
