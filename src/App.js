@@ -18,17 +18,28 @@ class App extends Component {
     super(props);
 
     this.state = {
-      movieList: [],
+      selectedMovies: []
     };
   }
 
-  /*searchList = () => {
-    return this.state.movieList.filter((movie) => {
-      const text = (`${movie.title}`).toLowerCase();
+  selectedMovieCallback = (movie) => {
+    let updatedSelectedMovies = this.state.selectedMovies
+    updatedSelectedMovies.push(movie)
 
-      return text.includes(this.state.searchTerm.toLowerCase());
-    });
-  } */
+    this.setState ({
+      selectedMovies: updatedSelectedMovies
+    }) 
+  }
+
+  unselectMovieCallback = (movie) => {
+    const updatedSelectedMovies = this.state.selectedMovies.filter((movieTarget) => {
+      return movie.id === movieTarget.id ? false : true 
+    })
+
+    this.setState ({
+      selectedMovies: updatedSelectedMovies
+    })
+  }
 
   render() {
     return (
@@ -47,6 +58,10 @@ class App extends Component {
             <Link to="/library">Library</Link>
           </li>
         </ul>
+        <p>Selected Movies:</p>
+        <ul>
+          { this.state.selectedMovies.map((movie) => <li>{movie.title}</li>) }
+        </ul>
       </nav>
 
      <Switch>
@@ -54,7 +69,7 @@ class App extends Component {
             <Customers />
           </Route>
           <Route path="/library">
-            <Library />
+            <Library selectMovie={this.selectedMovieCallback} unselectMovie={this.unselectMovieCallback} selectedMoviesState={this.state.selectedMovies}/>
           </Route>
           <Route path="/movie_search">
             <MovieSearch />

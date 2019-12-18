@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 import axios from 'axios';
+import Movie from './Movie.js'
 
 export class Library extends Component {
   constructor(props) {
@@ -23,17 +25,66 @@ export class Library extends Component {
     });
   }
 
-  
+  onMovieSelected = (movieId) => {
+    /* what to do when movie is selected/clicked */
+    console.log('select move')
+    let movieObject = this.state.movies.find((movie) => {
+      if (movie.id === movieId) {
+        return true
+      } else {
+        return false
+      }
+    })
+
+    this.props.selectMovie(movieObject)
+
+  }
+
+  onMovieUnselect = (movieId) => {
+    /* what to do when movie is unselected/unclocked */
+    console.log('unselect move')
+    let movieObject = this.state.movies.find((movie) => {
+      if (movie.id === movieId) {
+        return true
+      } else {
+        return false
+      }
+    })
+    this.props.unselectMovie(movieObject)
+  }
+
+  isMovieSelected = (movie) => {
+    let selectionMovies = this.props.selectedMoviesState
+
+    let movieSelected = selectionMovies.find((targetMovie) => {
+      if (movie.id === targetMovie.id) {
+        return true
+      } else {
+        return false
+      }
+    })
+
+    if (movieSelected === undefined) {
+      return false
+    } else {
+      return true
+    }
+  }
+
   render() {
     const movieInfo = this.state.movies.map((movie, i) => {
       return (
-        <div>
-          <img src={movie.image_url}></img>
-          <h1>Title: {movie.title}</h1>
-          <p>Id: {movie.id}</p>
-          <p>Overview: {movie.overview}</p>
-          <p>Release Date: {movie.release_date}</p>
-          <p>External Id:{movie.external_id}</p>
+        <div key={movie.id}>
+          <Movie id={movie.id} 
+          imageUrl={movie.image_url} 
+          title={movie.title} 
+          overview={movie.overview} 
+          releaseDate={movie.release_date} 
+          externalId={movie.external_id}
+          selected={this.isMovieSelected(movie)}
+          selectedMovieCallback={this.onMovieSelected}
+          unselectedMovieCallback={this.onMovieUnselect} />
+         
         </div>
       )
     })
@@ -45,6 +96,12 @@ export class Library extends Component {
       </div>
     )
   }
+}
+
+Library.propTypes = {
+  selectMovie: PropTypes.func,
+  unselectMovie: PropTypes.func,
+  selectedMoviesState: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
 export default Library
