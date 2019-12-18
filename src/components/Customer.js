@@ -13,10 +13,27 @@ export class Customer extends Component {
   onSelect = () => {
     const selectedCust = this.props.customer
     this.setState({
-      selectedCustomer: selectedCust
+      selectedCustomer: selectedCust,
     });
 
     this.props.selectedCust(selectedCust)
+  }
+
+  unSelect = () => {
+
+    this.setState({
+      selectedCustomer: {},
+    });
+
+    this.props.unSelect()
+  }
+
+  showButton = () => {
+    if (this.state.selectedCustomer === this.props.customer) {
+      return <input onClick ={this.unSelect} type="submit" value="Unselect" />
+    } else {
+      return <input onClick ={this.onSelect} type="submit" value="Select" />
+    }
   }
 
   render() {
@@ -32,8 +49,8 @@ export class Customer extends Component {
           <p>Postal Code: {postal_code}</p>
           <p>Phone: {phone}</p>
           <p>Account Credit: {account_credit}</p>
-          <p>Movies Checked Out: {movies_checked_out_count}</p>
-          <input onClick ={this.onSelect} type="submit" value="Select" />
+          <p>Movies Checked Out: {movies_checked_out_count}</p>       
+          { this.showButton() }         
       </section>
     )
   }

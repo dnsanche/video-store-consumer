@@ -10,6 +10,8 @@ import Customers from './Customers.js';
 import Library from './Library.js';
 import MovieSearch from './MovieSearch';
 import SelectedCustomer from './SelectedCustomer.js';
+import axios from 'axios';
+
 
 export class Store extends Component {
   constructor(props) {
@@ -18,6 +20,7 @@ export class Store extends Component {
     this.state = {
       selectedMovies: [],
       selectedCustomer: {},
+      rentalCheckout: []
     };
   }
 
@@ -45,6 +48,38 @@ onSelect = (selectedCust) => {
   });  
 }
 
+unSelect = () => {
+  this.setState({
+    selectedCustomer: {}
+  });  
+}
+
+checkOut = () => {
+  const title = this.state.selectedMovies[0].title;
+  const customer_id = this.state.selectedCustomer.id;
+  const due_date = "2020-02-03";
+
+  // const checkoutURL = `http://localhost:3000/rentals/${title}/
+  // check-out?customer_id=${customer_id}&due_date= ${due_date}`;
+  
+  const checkoutURL = `http://localhost:3000/rentals/${title}/check-out`;
+
+  axios.post(checkoutURL, {
+    customer_id: customer_id, 
+    due_date: due_date }).then((response) => { 
+    
+    let checkout = this.state.rentalCheckout
+    checkout.push(response.data)
+    this.setState({
+      rentalCheckout: checkout,
+    });
+  })
+  .catch((error) => {
+    this.setState({ error: error.message });    
+  });
+  console.log(this.state.rentalCheckout)
+}
+
   render() {
     return (
       <div>
@@ -61,11 +96,12 @@ onSelect = (selectedCust) => {
             <p>Selected Movies: </p>
             <ul>{ this.state.selectedMovies.map((movie) => <li>{movie.title}</li>)}</ul>
             <section>
-            < SelectedCustomer customer={this.state.selectedCustomer}/>
+              < SelectedCustomer customer={this.state.selectedCustomer}/>
             </section>
+            <input onClick ={this.checkOut} type="submit" value="Checkout" />
             <section>
             <Switch>
-              <Route path="/customers"> <Customers selectedCust={this.onSelect}/> </Route>
+              <Route path="/customers"> <Customers selectedCust={this.onSelect} unSelect={this.unSelect}/> </Route>
               <Route path="/library"><Library selectMovie={this.selectedMovieCallback} unselectMovie={this.unselectMovieCallback} selectedMoviesState={this.state.selectedMovies}/></Route>
               <Route path="/movie_search"> <MovieSearch/> </Route>
               <Route path="/"><p>Home Page</p></Route>

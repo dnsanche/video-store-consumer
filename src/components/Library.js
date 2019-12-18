@@ -27,7 +27,6 @@ export class Library extends Component {
 
   onMovieSelected = (movieId) => {
     /* what to do when movie is selected/clicked */
-    console.log('select move')
     let movieObject = this.state.movies.find((movie) => {
       if (movie.id === movieId) {
         return true
