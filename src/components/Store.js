@@ -24,10 +24,8 @@ export class Store extends Component {
   selectedMovieCallback = (movie) => {
     let updatedSelectedMovies = this.state.selectedMovies
     updatedSelectedMovies.push(movie)
-
     this.setState ({
       selectedMovies: updatedSelectedMovies,
-      selectedCustomer: selectedCust
     }) 
   }
 
