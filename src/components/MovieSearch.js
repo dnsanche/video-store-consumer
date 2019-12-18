@@ -8,6 +8,7 @@ export class MovieSearch extends Component {
     this.state = {
       searchTerm: '',
       filteredList: [],
+      selectedMovie: '',
       error: '',
     };
   }
@@ -22,7 +23,6 @@ export class MovieSearch extends Component {
     event.preventDefault();
     const searchMoviesURL = 'http://localhost:3000/movies'
     axios.get(searchMoviesURL, {params: {query: this.state.searchTerm}}).then((response) => { 
-      console.log("response:", response)
       this.setState({
         filteredList: response.data,
       });
@@ -34,15 +34,38 @@ export class MovieSearch extends Component {
     this.setState({  searchTerm: '' });
   }
 
+
+  addToLibrary = (movie, event) => {
+    event.preventDefault();
+    console.log("test")
+    const postMovie = 'http://localhost:3000/movies'
+    axios.post(postMovie, {
+      "title": movie.title,
+      "external_id": movie.external_id,
+      "overview": movie.overview,
+      "release_date": movie.release_date, 
+       "image_url": movie.image_url
+    }).then((response) => {
+      this.setState({
+        selectedMovie: response.data,
+      });
+    })
+    .catch((error) => {
+      this.setState({error: error.message});
+    });  
+  }
+
   render () {
     const movieSearch = this.state.filteredList.map((movie, i) => {
       return (
-        <div>
+        <div key={i}>
           <img src={movie.image_url}></img>
           <h1>Title: {movie.title}</h1>
           <p>Id: {movie.id}</p>
           <p>Overview: {movie.overview}</p>
           <p>Release Date: {movie.release_date}</p>
+          <p>External Id: {movie.external_id}</p>
+          <button onClick={(event) => {this.addToLibrary(movie, event)}}>Add to Library</button>
         </div>
       )});
 
