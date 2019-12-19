@@ -54,21 +54,14 @@ export class Library extends Component {
   }
 
   isMovieSelected = (movie) => {
-    let selectionMovies = this.props.selectedMoviesState
+    let selectionMovies = this.props.selectedMovieState
 
-    let movieSelected = selectionMovies.find((targetMovie) => {
-      if (movie.id === targetMovie.id) {
-        return true
-      } else {
-        return false
-      }
-    })
-
-    if (movieSelected === undefined) {
-      return false
-    } else {
-      return true
+    let movieSelected =  false
+    if (movie.id === selectionMovies.id) {
+      movieSelected =  true
     }
+
+    return movieSelected
   }
 
   render() {
