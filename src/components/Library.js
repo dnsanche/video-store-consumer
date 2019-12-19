@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import axios from 'axios';
 import Movie from './Movie.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Row } from 'react-bootstrap';
+import { Container, Row, Card } from 'react-bootstrap';
 
 export class Library extends Component {
   constructor(props) {
@@ -69,7 +69,7 @@ export class Library extends Component {
     const movieInfo = this.state.movies.map((movie, i) => {
       return (
         
-            <Movie 
+            <Movie key={i}
             id={movie.id} 
             imageUrl={movie.image_url} 
             title={movie.title} 
@@ -83,11 +83,11 @@ export class Library extends Component {
     })
 
     return (
-      <Container>
+      <Card>
         <Row>
         {movieInfo}
         </Row>
-      </Container>
+      </Card>
     )
   }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
-import { Col } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
 export class Movie extends Component {
   
@@ -18,16 +18,17 @@ export class Movie extends Component {
     </div>
 
     return (
-      <Col>
+     <Card style={{width: '18em'}}>
+       <Card.Body>
+        <Card.Img variant="top" src={this.props.imageUrl}/>
         { selectCheckbox }
-        <p>{this.props.selected}</p>
-        <img src={this.props.imageUrl}></img>
-        <h1>Title: {this.props.title}</h1>
-        <p>Id: {this.props.id}</p>
-        <p>Overview: {this.props.overview}</p>
-        <p>Release Date: {this.props.release_date}</p>
-        <p>External Id:{this.props.external_id}</p>
-      </Col>
+        <Card.Title>{this.props.selected}</Card.Title>
+        <Card.Text>Id: {this.props.id}</Card.Text>
+        <Card.Text>Overview: {this.props.overview}</Card.Text>
+        <Card.Text>Release Date: {this.props.release_date}</Card.Text>
+        <Card.Text>External Id:{this.props.external_id}</Card.Text>
+       </Card.Body>
+      </Card>
     )  
   }
 }

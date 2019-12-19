@@ -12,7 +12,8 @@ import MovieSearch from './MovieSearch';
 import Rentals from './Rentals';
 import Checkout from './Checkout';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar } from 'react-bootstrap';
+import { Navbar, Jumbotron, Container } from 'react-bootstrap';
+import './Store.css';
 
 
 export class Store extends Component {
@@ -63,13 +64,17 @@ export class Store extends Component {
         <Router>
           <section>
             <Navbar bg="light" expand="lg">
-              <Link to="/"> Home </Link> 
-              <Link to="/customers"> Customers </Link> 
-              <Link to="/library"> Library </Link> 
-              <Link to="/rentals"> Rentals </Link>
-              <Link to="/movie_search"> Search Movies </Link> 
+              <Navbar.Brand className="spacing">
+              <Link to="/"> Home </Link>
+                <Link to="/customers"> Customers </Link> 
+                <Link to="/library"> Library </Link> 
+                <Link to="/rentals"> Rentals </Link>
+                <Link to="/movie_search"> Search Movies </Link> 
+              </Navbar.Brand>
             </Navbar>
             </section>
+            <Container className="logo">
+            </Container>
             <section>
               < Checkout selectedCustomer={this.state.selectedCustomer} selectedMovie={this.state.selectedMovie} addRentalCallback={this.addRental}/>
             </section>
