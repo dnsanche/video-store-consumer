@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import axios from 'axios';
 import Movie from './Movie.js';
-import MovieSearch from './MovieSearch.js';
+import  './Library.css';
 
 export class Library extends Component {
   constructor(props) {
@@ -83,7 +83,7 @@ export class Library extends Component {
     })
 
     return (
-      <div>
+      <div className="movies">
         {movieInfo}
       </div>
     )

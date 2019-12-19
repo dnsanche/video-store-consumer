@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
+import './Movie.css';
 
 export class Movie extends Component {
   
@@ -17,7 +18,7 @@ export class Movie extends Component {
     </div>
 
     return (
-      <div>
+      <div className="movie">
         { selectCheckbox }
         <p>{this.props.selected}</p>
         <img src={this.props.imageUrl}></img>
