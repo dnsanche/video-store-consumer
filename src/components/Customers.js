@@ -22,6 +22,13 @@ export class Customers extends Component {
     this.props.selectedCust(selectedCust)
   }
 
+  unSelect = () => {
+    this.setState({
+      selectedCustomer: {}
+    });  
+    this.props.unSelect()
+  }
+
   componentDidMount() {
     const customers = 'http://localhost:3000/customers'
     axios.get(customers).then((response) => {
@@ -39,7 +46,7 @@ export class Customers extends Component {
     const customerInfo = this.state.customers.map((customer, i) => {
       return (
       <div>
-        <Customer i={i} customer={customer} selectedCust={this.onSelect}/>
+        <Customer i={i} customer={customer} selectedCust={this.onSelect} unSelect={this.unSelect}/>
       </div>
       )
     });

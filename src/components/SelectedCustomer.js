@@ -5,7 +5,9 @@ export class SelectedCustomer extends Component {
   render() {
   
     return (
-      <Customer customer={this.props.customer}/>
+      <div>
+        Selected Customer: { this.props.customer.name }
+      </div>
     )
   }
 }

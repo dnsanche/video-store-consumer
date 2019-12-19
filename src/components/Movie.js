@@ -25,7 +25,7 @@ export class Movie extends Component {
         <p>Id: {this.props.id}</p>
         <p>Overview: {this.props.overview}</p>
         <p>Release Date: {this.props.release_date}</p>
-         <p>External Id:{this.props.external_id}</p>
+        <p>External Id:{this.props.external_id}</p>
       </div>
     )  
   }
