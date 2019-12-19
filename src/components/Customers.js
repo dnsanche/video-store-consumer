@@ -14,7 +14,7 @@ export class Customers extends Component {
     };
   }
 
-  onSelect = (selectedCust) => {
+  selectCustomer = (selectedCust) => {
     this.setState({
       selectedCustomer: selectedCust
     });  
@@ -46,7 +46,7 @@ export class Customers extends Component {
     const customerInfo = this.state.customers.map((customer, i) => {
       return (
       <div>
-        <Customer i={i} customer={customer} selectedCust={this.onSelect} unSelect={this.unSelect}/>
+        <Customer i={i} customer={customer} selectedCust={this.selectCustomer} unSelect={this.unSelect}/>
       </div>
       )
     });
