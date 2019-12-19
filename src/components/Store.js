@@ -11,6 +11,8 @@ import Library from './Library.js';
 import MovieSearch from './MovieSearch';
 import Rentals from './Rentals';
 import Checkout from './Checkout';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Navbar} from 'react-bootstrap';
 
 
 export class Store extends Component {
@@ -56,33 +58,29 @@ export class Store extends Component {
 
   render() {
     return (
-      <div>
         <Router>
           <section>
-            <nav>
-              <ul>
-                <li> <Link to="/"> Home </Link> </li>
-                <li> <Link to="/customers"> Customers </Link> </li>
-                <li> <Link to="/library"> Library </Link> </li>
-                <li> <Link to="/rentals"> Rentals </Link></li>
-                <li> <Link to="/movie_search"> Search Movie </Link></li>
-              </ul>
-            </nav>
+            <Navbar bg="light" expand="lg">
+              <Link to="/"> Home </Link> 
+              <Link to="/customers"> Customers </Link> 
+              <Link to="/library"> Library </Link> 
+              <Link to="/rentals"> Rentals </Link>
+              <Link to="/movie_search"> Search Movies </Link> 
+            </Navbar>
             </section>
             <section>
               < Checkout selectedCustomer={this.state.selectedCustomer} selectedMovie={this.state.selectedMovie} addRentalCallback={this.addRental}/>
             </section>
             <section>
             <Switch>
-              <Route path="/customers"> <Customers selectedCust={this.selectCustomer} unSelect={this.unSelect}/> </Route>
-              <Route path="/library"><Library selectMovie={this.selectedMovieCallback} unselectMovie={this.unselectMovieCallback} selectedMovieState={this.state.selectedMovie}/></Route>
-              <Route path="/movie_search"> <MovieSearch/> </Route>
-              <Route path="/rentals"> <Rentals updateRentalsCallback={this.updateRentals}/> </Route>
-              <Route path="/"><p>Home Page</p></Route>
+                <Route path="/customers"> <Customers selectedCust={this.selectCustomer} unSelect={this.unSelect}/> </Route>
+                <Route path="/library"><Library selectMovie={this.selectedMovieCallback} unselectMovie={this.unselectMovieCallback} selectedMovieState={this.state.selectedMovie}/></Route>
+                <Route path="/movie_search"> <MovieSearch/> </Route>
+                <Route path="/rentals"> <Rentals updateRentalsCallback={this.updateRentals}/> </Route>
+                <Route path="/"><p>Home Page</p></Route>
             </Switch>
             </section>
         </Router>
-      </div>
     )
   }
 }

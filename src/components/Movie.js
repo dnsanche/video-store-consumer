@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
-import './Movie.css';
+import { Col } from 'react-bootstrap';
 
 export class Movie extends Component {
   
@@ -14,11 +14,11 @@ export class Movie extends Component {
 
   render() {
     const selectCheckbox = <div>
-      <input type="checkbox" checked={this.props.selected} onChange={this.selectMovie}></input>
+      <label>Select Movie <input type="checkbox" checked={this.props.selected} onChange={this.selectMovie}></input></label>
     </div>
 
     return (
-      <div className="movie">
+      <Col>
         { selectCheckbox }
         <p>{this.props.selected}</p>
         <img src={this.props.imageUrl}></img>
@@ -27,7 +27,7 @@ export class Movie extends Component {
         <p>Overview: {this.props.overview}</p>
         <p>Release Date: {this.props.release_date}</p>
         <p>External Id:{this.props.external_id}</p>
-      </div>
+      </Col>
     )  
   }
 }

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import axios from 'axios';
 import Movie from './Movie.js';
-import  './Library.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container, Row } from 'react-bootstrap';
 
 export class Library extends Component {
   constructor(props) {
@@ -67,25 +68,26 @@ export class Library extends Component {
   render() {
     const movieInfo = this.state.movies.map((movie, i) => {
       return (
-        <div key={movie.id}>
-          <Movie id={movie.id} 
-          imageUrl={movie.image_url} 
-          title={movie.title} 
-          overview={movie.overview} 
-          releaseDate={movie.release_date} 
-          externalId={movie.external_id}
-          selected={this.isMovieSelected(movie)}
-          selectedMovieCallback={this.onMovieSelected}
-          unselectedMovieCallback={this.onMovieUnselect} />
-         
-        </div>
+        
+            <Movie 
+            id={movie.id} 
+            imageUrl={movie.image_url} 
+            title={movie.title} 
+            overview={movie.overview} 
+            releaseDate={movie.release_date} 
+            externalId={movie.external_id}
+            selected={this.isMovieSelected(movie)}
+            selectedMovieCallback={this.onMovieSelected}
+            unselectedMovieCallback={this.onMovieUnselect} />
       )
     })
 
     return (
-      <div className="movies">
+      <Container>
+        <Row>
         {movieInfo}
-      </div>
+        </Row>
+      </Container>
     )
   }
 }
