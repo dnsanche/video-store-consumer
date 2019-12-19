@@ -12,7 +12,7 @@ import MovieSearch from './MovieSearch';
 import Rentals from './Rentals';
 import Checkout from './Checkout';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar} from 'react-bootstrap';
+import { Navbar } from 'react-bootstrap';
 
 
 export class Store extends Component {
@@ -34,7 +34,9 @@ export class Store extends Component {
   }
 
   unselectMovieCallback = (movie) => {
-    return movie.id === this.state.selectedMovie.id ? false : true 
+    this.setState({	
+      selectedMovie: {}	
+    });
   }
 
   selectCustomer = (selectedCust) => {

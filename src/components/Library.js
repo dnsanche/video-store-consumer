@@ -95,7 +95,7 @@ export class Library extends Component {
 Library.propTypes = {
   selectMovie: PropTypes.func,
   unselectMovie: PropTypes.func,
-  selectedMoviesState: PropTypes.arrayOf(PropTypes.object).isRequired
+  selectedMovieState: PropTypes.object.isRequired
 }
 
 export default Library
