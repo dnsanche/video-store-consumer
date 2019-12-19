@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import axios from 'axios';
-import Movie from './Movie.js'
+import Movie from './Movie.js';
+import MovieSearch from './MovieSearch.js';
 
 export class Library extends Component {
   constructor(props) {
