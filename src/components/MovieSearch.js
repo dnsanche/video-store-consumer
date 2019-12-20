@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Container, Row, Card } from 'react-bootstrap';
-
+import { Container, Row, Card, InputGroup, Button, FormControl } from 'react-bootstrap';
+import "./MovieSearch.css";
 
 export class MovieSearch extends Component {
   constructor(props) {
@@ -60,34 +60,39 @@ export class MovieSearch extends Component {
   render () {
     const movieSearch = this.state.filteredList.map((movie, i) => {
       return (
-        <Row key={i}>
-          <Card.Img variant="top" img src={movie.image_url}/>
+        <Card key={i} style={{width: '18em'}}>
+          <Card.Img variant="top" src={movie.image_url}/>
           <Card.Body>
             <Card.Title>Title: {movie.title}</Card.Title>
             <Card.Text>EXTERNAL ID: {movie.id}</Card.Text>
             <Card.Text>Overview: {movie.overview}</Card.Text>
             <Card.Text>Release Date: {movie.release_date}</Card.Text>
-            <button onClick={(event)=> {this.addToLibrary(movie)}}>Add to Rental Library</button>
+            <button onClick={(event)=> {this.addToLibrary(movie, event)}}>Add to Rental Library</button>
           </Card.Body>
-          
-        </Row>
+        </Card>
       )});
 
     return (
-      <Card style={{ width: '15rem' }}>
-      <form>
+      <div>
         <section>
-          <input
-            type="text"
-            placeholder="Search Movie Title"
-            onChange={this.onSearchChange}
-            value={this.state.searchTerm}
-          /> 
-          <input onClick ={this.onSubmit} type="submit" value="Submit" />
+          <InputGroup className="search">
+            <FormControl
+              placeholder="Search Movie Title"
+              onChange={this.onSearchChange}
+              value={this.state.searchTerm}
+            />
+            <InputGroup.Append>
+              <Button variant="outline-primary" onClick ={this.onSubmit}>
+                Search
+              </Button>
+            </InputGroup.Append>
+          </InputGroup>
         </section>
+        <Row>
           {movieSearch}
-      </form>
-      </Card>
+        </Row>
+     
+      </div>
     )
   }
 }

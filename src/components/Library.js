@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import axios from 'axios';
 import Movie from './Movie.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Row, Card } from 'react-bootstrap';
+import { Container, Row, Card, OverlayTrigger } from 'react-bootstrap';
 
 export class Library extends Component {
   constructor(props) {
@@ -73,8 +73,8 @@ export class Library extends Component {
             imageUrl={movie.image_url} 
             title={movie.title} 
             overview={movie.overview} 
-            releaseDate={movie.release_date} 
-            externalId={movie.external_id}
+            release_date={movie.release_date} 
+            external_id={movie.external_id}
             selected={this.isMovieSelected(movie)}
             selectedMovieCallback={this.onMovieSelected}
             unselectedMovieCallback={this.onMovieUnselect} />
