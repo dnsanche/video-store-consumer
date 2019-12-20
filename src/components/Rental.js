@@ -7,15 +7,10 @@ export class Rental extends Component {
   
   };
 
-  returned = () => {
-    if (this.props.returned === true) {return "Returned"}
-      else {return " "}
-  }
-
-
   render() {
     const { checkout_date, customer_id, customer_name, due_date, id, movie_id, movie_title, returned } = this.props.rental;
     
+   
     return (
       <tr>
         <td> {id} </td>
@@ -25,7 +20,7 @@ export class Rental extends Component {
         <td> {due_date}</td>
         <td> {movie_id}</td>
         <td> {movie_title}</td>
-        <td> {this.returned}</td>
+        <td> { returned === true ? "True:" : "False" }</td>
       </tr>
     )
   }
