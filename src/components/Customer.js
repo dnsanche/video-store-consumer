@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import './Customer.css';
+import { tr } from 'react-bootstrap';
+
 
 export class Customer extends Component {
   constructor(props) {
@@ -40,18 +42,18 @@ export class Customer extends Component {
     const {id, name, address, city, state, postal_code, phone, 
       account_credit, movies_checked_out_count  } = this.props.customer
     return (
-      <section className="customer">
-          <h1> {name}</h1>
-          <p>Id: {id}</p>
-          <p>Address: {address}</p>
-          <p>City: {city}</p>
-          <p>State: {state}</p>
-          <p>Postal Code: {postal_code}</p>
-          <p>Phone: {phone}</p>
-          <p>Account Credit: {account_credit}</p>
-          <p>Movies Checked Out: {movies_checked_out_count}</p>       
-          { this.showButton() }         
-      </section>
+      <tr>
+          <td>{id}</td>
+          <td>{name}</td>
+          <td>{address}</td>
+          <td>{city}</td>
+          <td>{state}</td>
+          <td>{postal_code}</td>
+          <td>{phone}</td>
+          <td>{account_credit}</td>
+          <td>{movies_checked_out_count}</td>
+          <td>{this.showButton()}</td>
+      </tr>
     )
   }
 }
