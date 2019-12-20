@@ -69,7 +69,7 @@ export class Store extends Component {
     return (
         <Router>
           <section>
-            <Navbar bg="light" expand="lg">
+            <Navbar bg="light" expand="lg" className="Navigation">
               <Navbar.Brand className="spacing">
               <Link to="/"> Home </Link>
                 <Link to="/customers"> Customers </Link> 
@@ -79,20 +79,18 @@ export class Store extends Component {
               </Navbar.Brand>
             </Navbar>
             </section>
-            <Container className="logo">
-            </Container>
-            <section>
-              < Checkout statusCustomer={this.state.statusCustomer} statusMovie={this.state.statusMovie} 
-              selectedCustomer={this.state.selectedCustomer} 
-              selectedMovie={this.state.selectedMovie} addRentalCallback={this.addRental}/>
-            </section>
+            < Checkout statusCustomer={this.state.statusCustomer} statusMovie={this.state.statusMovie} 
+                      selectedCustomer={this.state.selectedCustomer} 
+                      selectedMovie={this.state.selectedMovie} addRentalCallback={this.addRental}/>
             <section>
             <Switch>
                 <Route path="/customers"> <Customers selectedCust={this.selectCustomer} unSelect={this.unSelect}/> </Route>
                 <Route path="/library"><Library selectMovie={this.selectedMovieCallback} unselectMovie={this.unselectMovieCallback} selectedMovieState={this.state.selectedMovie}/></Route>
                 <Route path="/movie_search"> <MovieSearch/> </Route>
                 <Route path="/rentals"> <Rentals updateRentalsCallback={this.updateRentals}/> </Route>
-                <Route path="/"><p>Home Page</p></Route>
+                <Route exact path="/">
+                  <section className="logo"></section>
+                </Route>
             </Switch>
             </section>
         </Router>
