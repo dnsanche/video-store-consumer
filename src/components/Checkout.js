@@ -1,9 +1,15 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import {Alert} from 'react-bootstrap'
+import './Checkout.css';
 
 export class Checkout extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      error: ''
+    }
   };
 
   checkOut = () => {
@@ -20,18 +26,36 @@ export class Checkout extends Component {
     ).catch((error) => {
       this.setState({ error: error.message });    
     });
+
+    if (this.state.error.length < 1) {
+      return (
+        <Alert variant="danger" >
+          Rental Unsuccessful
+        </Alert>
+      )
+
+    } else {
+      return (
+        <Alert variant="success">
+          Success!
+        </Alert>
+      )
+
+    }
   }
+
 
   render() {
     const showCheckout = 
-    <section>
+    <section className="checkout">
        <p> Selected Customer: { this.props.selectedCustomer.name } </p>
        <p> Selected Movies: { this.props.selectedMovie.title} </p>
-       <input onClick ={this.checkOut} type="submit" value="Checkout" />
-     </section>
-   
+       <input onClick ={this.checkOut} type="submit" value="Checkout"/>
+     </section>   
       return (
-        (this.props.statusCustomer === true || this.props.statusMovie ==true) ? showCheckout : ""
+        <div>
+          {(this.props.statusCustomer === true || this.props.statusMovie ==true) ? showCheckout : ""}
+        </div>
       );
     }
 }

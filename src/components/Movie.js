@@ -21,12 +21,15 @@ export class Movie extends Component {
      <Card style={{width: '18em'}}>
        <Card.Body>
         <Card.Img variant="top" src={this.props.imageUrl}/>
-        { selectCheckbox }
-        <Card.Title>{this.props.selected}</Card.Title>
-        <Card.Text>Id: {this.props.id}</Card.Text>
+        <span>
+          <Card.Title>{this.props.title}</Card.Title> 
+          <Card.Text>{selectCheckbox } </Card.Text>
+        </span>
+        <Card.Text>ID: {this.props.id}</Card.Text>
         <Card.Text>Overview: {this.props.overview}</Card.Text>
         <Card.Text>Release Date: {this.props.release_date}</Card.Text>
-        <Card.Text>External Id:{this.props.external_id}</Card.Text>
+        <Card.Text>External ID:{this.props.external_id}</Card.Text>
+        {this.props.selected}
        </Card.Body>
       </Card>
     )  
@@ -38,8 +41,8 @@ Movie.propTypes = {
   imageUrl: propTypes.string.isRequired,
   title: propTypes.string.isRequired,
   overview: propTypes.string.isRequired,
-  releaseDate: propTypes.instanceOf(Date).isRequired,
-  externalId: propTypes.number.isRequired,
+  release_date: propTypes.string.isRequired,
+  external_id: propTypes.number.isRequired,
   selected: propTypes.bool,
   selectedMovieCallback: propTypes.func.isRequired,
   unselectedMovieCallback: propTypes.func.isRequired
