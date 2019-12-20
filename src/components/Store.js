@@ -14,6 +14,7 @@ import Checkout from './Checkout';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Jumbotron, Container } from 'react-bootstrap';
 import './Store.css';
+import Home from './home.jpeg'
 
 export class Store extends Component {
   constructor(props) {
@@ -95,10 +96,7 @@ export class Store extends Component {
                 <Link to="/movie_search"> SEARCH MOVIES </Link> 
               </Navbar.Brand>
             </Navbar>
-            <link href="https://fonts.googleapis.com/css?family=Crimson+Text&display=swap" rel="stylesheet"></link>
-    
-            <Container className="logo">
-            </Container>
+            <link href="https://fonts.googleapis.com/css?family=Crimson+Text&display=swap" rel="stylesheet"></link>  
             <section>
               < Checkout  
                 checkoutMovie={this.state.checkoutMovie}
@@ -112,7 +110,7 @@ export class Store extends Component {
                 <Route path="/library"><Library selectMovie={this.selectedMovieCallback} unselectMovie={this.unselectMovieCallback} selectedMovieState={this.state.selectedMovie}/></Route>
                 <Route path="/movie_search"> <MovieSearch/> </Route>
                 <Route path="/rentals"> <Rentals updateRentalsCallback={this.updateRentals}/> </Route>
-                <Route path="/"></Route>
+                <Route path="/"><img src={Home}/></Route>
             </Switch>
             </section>
         </Router>

@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import Rental from './Rental.js';
 import './Rental.css';
+import { Table, Row } from 'react-bootstrap';
+
 
 export class Rentals extends Component {
 
@@ -34,8 +36,7 @@ export class Rentals extends Component {
     );
 
     return (
-      <section className="rentals-container">
-        <table class="table table-hover">
+      <Table striped bordered hieght='300'>
           <thead class="thead-dark">
             <tr>
               <th>Rental Id</th>
@@ -43,16 +44,15 @@ export class Rentals extends Component {
               <th>Customer Id</th>
               <th>Customer Name</th>
               <th>Due Date</th>
-              <th>Move Id</th>
-              <th>Move Title</th>
+              <th>Movie Id</th>
+              <th>Movie Title</th>
               <th>Returned</th>
             </tr>
           </thead>
           <tbody>
             {rentalsList}
-          </tbody>
-        </table>
-      </section>
+          </tbody> 
+      </Table>
     )
   }
 };
