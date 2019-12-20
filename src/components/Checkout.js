@@ -26,58 +26,44 @@ export class Checkout extends Component {
     ).catch((error) => {
       this.setState({ error: error.message });    
     });
-
-    if (this.state.error.length < 1) {
-      return (
-        <Alert variant="danger" >
-          Rental Unsuccessful
-        </Alert>
-      )
-
-    } else {
-      return (
-        <Alert variant="success">
-          Success!
-        </Alert>
-      )
-
-    }
   }
-
 
   render() {
 
     const showCustomer = 
-      <p> Selected Customer: { this.props.selectedCustomer.name } </p>
+      <h4> Selected Customer: { this.props.selectedCustomer.name } </h4>
      
 
     const showMovie = 
-      <p> Selected Movies: { this.props.selectedMovie.title} </p>
+      <h4> Selected Movies: { this.props.selectedMovie.title} </h4>
       
     const showButton = 
-      <div class="alert alert-success" role="alert">
-        <div>You are ready for checkout!</div>
-        <input onClick ={this.checkOut} type="submit" value="Checkout" 
-        class="alert alert-alert" role="alert"/>
-      </div>
-
-
+        <input onClick ={this.checkOut} type="submit" value="Checkout"/>
+     
     if ( this.props.checkoutMovie + this.props.checkoutCustomer === 2) { 
-      return (
-        <div> 
+      return ( 
+      <div class="alert alert-success" role="alert">
+        <div>
+          <h3>You are ready for checkout!</h3>
           { showCustomer } 
           { showMovie }
           { showButton }  
-        </div>  ) } 
+        </div>  
+      </div>   
+      )} 
     else if ( this.props.checkoutMovie + this.props.checkoutCustomer === 1 ) {
       return ( 
-        <div> 
-          <p>Please select a movie and a customer to complete checkout. </p>
+        <div class="alert alert-warning" role="alert">
+          <h3>Please select a movie and a customer to complete checkout. </h3>
           { showCustomer } 
           { showMovie }        
         </div>  ) } 
     else { 
-      return ("") 
+      return (
+        <header className="store_name"> 
+          <h1> Welcome to Dani's and Mariya's Video Store. </h1>      
+        </header>
+      ) 
     }
   }
 };

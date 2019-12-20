@@ -18,7 +18,7 @@ export class Movie extends Component {
     </div>
 
     return (
-     <Card style={{width: '18em'}}>
+     <Card style={{width: '20em'}} >
        <Card.Body>
         <Card.Img variant="top" src={this.props.imageUrl}/>
         <span>
@@ -28,7 +28,6 @@ export class Movie extends Component {
         <Card.Text>ID: {this.props.id}</Card.Text>
         <Card.Text>Overview: {this.props.overview}</Card.Text>
         <Card.Text>Release Date: {this.props.release_date}</Card.Text>
-        <Card.Text>External ID:{this.props.external_id}</Card.Text>
         {this.props.selected}
        </Card.Body>
       </Card>

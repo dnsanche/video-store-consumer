@@ -60,11 +60,11 @@ export class MovieSearch extends Component {
   render () {
     const movieSearch = this.state.filteredList.map((movie, i) => {
       return (
-        <Card key={i} style={{width: '18em'}}>
+        <Card key={i} style={{width: '20em'}}>
           <Card.Img variant="top" src={movie.image_url}/>
           <Card.Body>
             <Card.Title>Title: {movie.title}</Card.Title>
-            <Card.Text>EXTERNAL ID: {movie.id}</Card.Text>
+            <Card.Text>EXTERNAL ID: {movie.external_id}</Card.Text>
             <Card.Text>Overview: {movie.overview}</Card.Text>
             <Card.Text>Release Date: {movie.release_date}</Card.Text>
             <button onClick={(event)=> {this.addToLibrary(movie, event)}}>Add to Rental Library</button>
