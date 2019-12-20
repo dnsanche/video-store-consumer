@@ -22,69 +22,89 @@ export class Store extends Component {
     this.state = {
       selectedMovie: {},
       selectedCustomer: {},
-      statusCustomer: false,
-      statusMovie: false,
+      checkoutMovie: 0,
+      checkoutCustomer: 0,
     };
   }
+
+  count = () => {
+    if ( this.state.selectedMovie.id == null ) { 
+      this.setState ({ checkoutMovie: 1 }) 
+    }
+  }
+
+  count2 = () => {
+    if ( this.state.selectedCustomer.id == null ) { 
+      this.setState ({ checkoutCustomer: 1 }) 
+    }
+  }  
 
   selectedMovieCallback = (movie) => {
     let updatedSelectedMovie = movie
   
     this.setState ({
       selectedMovie: updatedSelectedMovie,
-      statusMovie: true
     }) 
+
+    this.count()
   }
 
   unselectMovieCallback = (movie) => {
     this.setState({	
-      selectedMovie: {}	
+      selectedMovie: {},
+      checkoutMovie: 0
     });
+    this.count()
   }
 
   selectCustomer = (selectedCust) => {
     this.setState({
       selectedCustomer: selectedCust,
-      statusCustomer: true,
     });  
+    this.count2()
   }
 
   unSelect = () => {
     this.setState({
-      selectedCustomer: {},
-      statusCustomer: false
+      selectedCustomer: 0,
+      checkoutCustomer: 0
     });  
+    this.count2()
   }
 
   addRental = () => {
     this.setState({
-      selectedCustomer: {},
-      selectedMovie: {},
-      statusCustomer: false,
-      statusMovie: false,
+      selectedCustomer: 0,
+      selectedMovie: 0,
+      checkoutMovie: 0,
+      checkoutCustomer: 0
     }); 
+    this.count()
   }
 
   render() {
     return (
         <Router>
-          <section>
-            <Navbar bg="light" expand="lg">
+            <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet"></link>          
+            <Navbar expand="lg" className="Navigation">
               <Navbar.Brand className="spacing">
-              <Link to="/"> Home </Link>
-                <Link to="/customers"> Customers </Link> 
-                <Link to="/library"> Library </Link> 
-                <Link to="/rentals"> Rentals </Link>
-                <Link to="/movie_search"> Search Movies </Link> 
+                <Link to="/"> HOME </Link>
+                <Link to="/customers"> CUSTOMERS </Link> 
+                <Link to="/library"> LIBRARY </Link> 
+                <Link to="/rentals"> RENTALS </Link>
+                <Link to="/movie_search"> SEARCH MOVIES </Link> 
               </Navbar.Brand>
             </Navbar>
-            </section>
+            <link href="https://fonts.googleapis.com/css?family=Crimson+Text&display=swap" rel="stylesheet"></link>
+    
             <Container className="logo">
             </Container>
             <section>
-              < Checkout statusCustomer={this.state.statusCustomer} statusMovie={this.state.statusMovie} 
-              selectedCustomer={this.state.selectedCustomer} 
-              selectedMovie={this.state.selectedMovie} addRentalCallback={this.addRental}/>
+              < Checkout  
+                checkoutMovie={this.state.checkoutMovie}
+                checkoutCustomer={this.state.checkoutCustomer}
+                selectedCustomer={this.state.selectedCustomer} 
+                selectedMovie={this.state.selectedMovie} addRentalCallback={this.addRental}/>
             </section>
             <section>
             <Switch>
@@ -92,7 +112,7 @@ export class Store extends Component {
                 <Route path="/library"><Library selectMovie={this.selectedMovieCallback} unselectMovie={this.unselectMovieCallback} selectedMovieState={this.state.selectedMovie}/></Route>
                 <Route path="/movie_search"> <MovieSearch/> </Route>
                 <Route path="/rentals"> <Rentals updateRentalsCallback={this.updateRentals}/> </Route>
-                <Route path="/"><p>Home Page</p></Route>
+                <Route path="/"></Route>
             </Switch>
             </section>
         </Router>

@@ -23,17 +23,40 @@ export class Checkout extends Component {
   }
 
   render() {
-    const showCheckout = 
-    <section>
-       <p> Selected Customer: { this.props.selectedCustomer.name } </p>
-       <p> Selected Movies: { this.props.selectedMovie.title} </p>
-       <input onClick ={this.checkOut} type="submit" value="Checkout" />
-     </section>
-   
+
+    const showCustomer = 
+      <p> Selected Customer: { this.props.selectedCustomer.name } </p>
+     
+
+    const showMovie = 
+      <p> Selected Movies: { this.props.selectedMovie.title} </p>
+      
+    const showButton = 
+      <div class="alert alert-success" role="alert">
+        <div>You are ready for checkout!</div>
+        <input onClick ={this.checkOut} type="submit" value="Checkout" 
+        class="alert alert-alert" role="alert"/>
+      </div>
+
+
+    if ( this.props.checkoutMovie + this.props.checkoutCustomer === 2) { 
       return (
-        (this.props.statusCustomer === true || this.props.statusMovie ==true) ? showCheckout : ""
-      );
+        <div> 
+          { showCustomer } 
+          { showMovie }
+          { showButton }  
+        </div>  ) } 
+    else if ( this.props.checkoutMovie + this.props.checkoutCustomer === 1 ) {
+      return ( 
+        <div> 
+          <p>Please select a movie and a customer to complete checkout. </p>
+          { showCustomer } 
+          { showMovie }        
+        </div>  ) } 
+    else { 
+      return ("") 
     }
-}
+  }
+};
 
 export default Checkout

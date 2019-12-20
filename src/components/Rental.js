@@ -20,7 +20,7 @@ export class Rental extends Component {
         <td> {due_date}</td>
         <td> {movie_id}</td>
         <td> {movie_title}</td>
-        <td> { returned === true ? "True:" : "False" }</td>
+        <td> { returned === true ? "True" : "False" }</td>
       </tr>
     )
   }
