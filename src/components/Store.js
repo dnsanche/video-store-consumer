@@ -12,14 +12,15 @@ import MovieSearch from './MovieSearch';
 import Rentals from './Rentals';
 import Checkout from './Checkout';
 
-
 export class Store extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       selectedMovie: {},
-      selectedCustomer: {}
+      selectedCustomer: {},
+      statusCustomer: false,
+      statusMovie: false,
     };
   }
 
@@ -28,6 +29,7 @@ export class Store extends Component {
   
     this.setState ({
       selectedMovie: updatedSelectedMovie,
+      statusMovie: true
     }) 
   }
 
@@ -37,20 +39,24 @@ export class Store extends Component {
 
   selectCustomer = (selectedCust) => {
     this.setState({
-      selectedCustomer: selectedCust
+      selectedCustomer: selectedCust,
+      statusCustomer: true,
     });  
   }
 
   unSelect = () => {
     this.setState({
-      selectedCustomer: {}
+      selectedCustomer: {},
+      statusCustomer: false
     });  
   }
 
   addRental = () => {
     this.setState({
       selectedCustomer: {},
-      selectedMovie: {}
+      selectedMovie: {},
+      statusCustomer: false,
+      statusMovie: false,
     }); 
   }
 
@@ -70,7 +76,9 @@ export class Store extends Component {
             </nav>
             </section>
             <section>
-              < Checkout selectedCustomer={this.state.selectedCustomer} selectedMovie={this.state.selectedMovie} addRentalCallback={this.addRental}/>
+              < Checkout statusCustomer={this.state.statusCustomer} statusMovie={this.state.statusMovie} 
+              selectedCustomer={this.state.selectedCustomer} 
+              selectedMovie={this.state.selectedMovie} addRentalCallback={this.addRental}/>
             </section>
             <section>
             <Switch>

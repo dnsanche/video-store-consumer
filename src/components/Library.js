@@ -42,7 +42,6 @@ export class Library extends Component {
 
   onMovieUnselect = (movieId) => {
     /* what to do when movie is unselected/unclocked */
-    console.log('unselect move')
     let movieObject = this.state.movies.find((movie) => {
       if (movie.id === movieId) {
         return true
