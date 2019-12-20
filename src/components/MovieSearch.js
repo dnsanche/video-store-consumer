@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Container, Row, Card } from 'react-bootstrap';
+
 
 export class MovieSearch extends Component {
   constructor(props) {
@@ -58,18 +60,21 @@ export class MovieSearch extends Component {
   render () {
     const movieSearch = this.state.filteredList.map((movie, i) => {
       return (
-        <div key={i}>
-          <img src={movie.image_url}></img>
-          <h1>Title: {movie.title}</h1>
-          <p>Id: {movie.id}</p>
-          <p>Overview: {movie.overview}</p>
-          <p>Release Date: {movie.release_date}</p>
-          <p>External Id: {movie.external_id}</p>
-          <button onClick={(event) => {this.addToLibrary(movie, event)}}>Add to Library</button>
-        </div>
+        <Row key={i}>
+          <Card.Img variant="top" img src={movie.image_url}/>
+          <Card.Body>
+            <Card.Title>Title: {movie.title}</Card.Title>
+            <Card.Text>EXTERNAL ID: {movie.id}</Card.Text>
+            <Card.Text>Overview: {movie.overview}</Card.Text>
+            <Card.Text>Release Date: {movie.release_date}</Card.Text>
+            <button onClick={(event)=> {this.addToLibrary(movie)}}>Add to Rental Library</button>
+          </Card.Body>
+          
+        </Row>
       )});
 
     return (
+      <Card style={{ width: '15rem' }}>
       <form>
         <section>
           <input
@@ -80,8 +85,9 @@ export class MovieSearch extends Component {
           /> 
           <input onClick ={this.onSubmit} type="submit" value="Submit" />
         </section>
-        {movieSearch}
+          {movieSearch}
       </form>
+      </Card>
     )
   }
 }

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Customer from './Customer.js';
 import './Customers.css';
+import { Table, Row } from 'react-bootstrap';
+
 
 export class Customers extends Component {
   constructor(props) {
@@ -45,16 +47,31 @@ export class Customers extends Component {
 
     const customerInfo = this.state.customers.map((customer, i) => {
       return (
-      <div>
         <Customer i={i} customer={customer} selectedCust={this.selectCustomer} unSelect={this.unSelect}/>
-      </div>
       )
     });
 
     return (
-      <div className="customers">
+      <Table striped bordered hieght='300'>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Postal Code</th>
+            <th>Phone</th>
+            <th>Account Credit</th>
+            <th>Movies Checked Out Count</th>
+            <th>Select Customer</th>
+          </tr>
+        </thead>
+        <tbody>
         {customerInfo}
-      </div>
+         
+        </tbody>
+      </Table>
     )
   }
 }
