@@ -14,6 +14,7 @@ import Checkout from './Checkout';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Jumbotron, Container } from 'react-bootstrap';
 import './Store.css';
+import Home from './home.jpg'
 
 export class Store extends Component {
   constructor(props) {
@@ -22,75 +23,94 @@ export class Store extends Component {
     this.state = {
       selectedMovie: {},
       selectedCustomer: {},
-      statusCustomer: false,
-      statusMovie: false,
+      checkoutMovie: 0,
+      checkoutCustomer: 0,
     };
   }
+
+  count = () => {
+    if ( this.state.selectedMovie.id == null ) { 
+      this.setState ({ checkoutMovie: 1 }) 
+    }
+  }
+
+  count2 = () => {
+    if ( this.state.selectedCustomer.id == null ) { 
+      this.setState ({ checkoutCustomer: 1 }) 
+    }
+  }  
 
   selectedMovieCallback = (movie) => {
     let updatedSelectedMovie = movie
   
     this.setState ({
       selectedMovie: updatedSelectedMovie,
-      statusMovie: true
     }) 
+
+    this.count()
   }
 
   unselectMovieCallback = (movie) => {
     this.setState({	
-      selectedMovie: {}	
+      selectedMovie: {},
+      checkoutMovie: 0
     });
+    this.count()
   }
 
   selectCustomer = (selectedCust) => {
     this.setState({
       selectedCustomer: selectedCust,
-      statusCustomer: true,
     });  
+    this.count2()
   }
 
   unSelect = () => {
     this.setState({
-      selectedCustomer: {},
-      statusCustomer: false
+      selectedCustomer: 0,
+      checkoutCustomer: 0
     });  
+    this.count2()
   }
 
   addRental = () => {
     this.setState({
-      selectedCustomer: {},
-      selectedMovie: {},
-      statusCustomer: false,
-      statusMovie: false,
+      selectedCustomer: 0,
+      selectedMovie: 0,
+      checkoutMovie: 0,
+      checkoutCustomer: 0
     }); 
+    this.count()
   }
 
   render() {
     return (
         <Router>
-          <section>
-            <Navbar bg="light" expand="lg" className="Navigation">
+            <link href="https://fonts.googleapis.com/css?family=Cinzel:900&display=swap" rel="stylesheet"></link>
+            <Navbar expand="lg" className="Navigation">
               <Navbar.Brand className="spacing">
-              <Link to="/"> Home </Link>
-                <Link to="/customers"> Customers </Link> 
-                <Link to="/library"> Library </Link> 
-                <Link to="/rentals"> Rentals </Link>
-                <Link to="/movie_search"> Search Movies </Link> 
+                <Link to="/"> HOME </Link>
+                <Link to="/customers"> CUSTOMERS </Link> 
+                <Link to="/library"> LIBRARY </Link> 
+                <Link to="/rentals"> RENTALS </Link>
+                <Link to="/movie_search"> SEARCH MOVIES </Link> 
               </Navbar.Brand>
             </Navbar>
+            <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet"></link>
+            <section>
+              < Checkout  
+                checkoutMovie={this.state.checkoutMovie}
+                checkoutCustomer={this.state.checkoutCustomer}
+                selectedCustomer={this.state.selectedCustomer} 
+                selectedMovie={this.state.selectedMovie} addRentalCallback={this.addRental}/>
             </section>
-            < Checkout statusCustomer={this.state.statusCustomer} statusMovie={this.state.statusMovie} 
-                      selectedCustomer={this.state.selectedCustomer} 
-                      selectedMovie={this.state.selectedMovie} addRentalCallback={this.addRental}/>
             <section>
             <Switch>
                 <Route path="/customers"> <Customers selectedCust={this.selectCustomer} unSelect={this.unSelect}/> </Route>
                 <Route path="/library"><Library selectMovie={this.selectedMovieCallback} unselectMovie={this.unselectMovieCallback} selectedMovieState={this.state.selectedMovie}/></Route>
                 <Route path="/movie_search"> <MovieSearch/> </Route>
                 <Route path="/rentals"> <Rentals updateRentalsCallback={this.updateRentals}/> </Route>
-                <Route exact path="/">
-                  <section className="logo"></section>
-                </Route>
+                <Route path="/"><img src={Home} className="home_picture"/></Route>
             </Switch>
             </section>
         </Router>

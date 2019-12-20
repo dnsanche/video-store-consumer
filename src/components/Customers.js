@@ -53,7 +53,7 @@ export class Customers extends Component {
 
     return (
       <Table striped bordered hieght='300'>
-        <thead>
+        <thead class="thead-dark">
           <tr>
             <th>ID</th>
             <th>Name</th>

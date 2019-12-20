@@ -32,9 +32,9 @@ export class Customer extends Component {
 
   showButton = () => {
     if (this.state.selectedCustomer === this.props.customer) {
-      return <input onClick ={this.unSelect} type="submit" value="Unselect" />
+      return <input onClick ={this.unSelect} type="submit" value="Select/Unselect" />
     } else {
-      return <input onClick ={this.onSelect} type="submit" value="Select" />
+      return <input onClick ={this.onSelect} type="submit" value="Select/Unselect" />
     }
   }
 
