@@ -15,14 +15,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Jumbotron, Container } from 'react-bootstrap';
 import './Store.css';
 
-
 export class Store extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       selectedMovie: {},
-      selectedCustomer: {}
+      selectedCustomer: {},
+      statusCustomer: false,
+      statusMovie: false,
     };
   }
 
@@ -31,6 +32,7 @@ export class Store extends Component {
   
     this.setState ({
       selectedMovie: updatedSelectedMovie,
+      statusMovie: true
     }) 
   }
 
@@ -42,20 +44,24 @@ export class Store extends Component {
 
   selectCustomer = (selectedCust) => {
     this.setState({
-      selectedCustomer: selectedCust
+      selectedCustomer: selectedCust,
+      statusCustomer: true,
     });  
   }
 
   unSelect = () => {
     this.setState({
-      selectedCustomer: {}
+      selectedCustomer: {},
+      statusCustomer: false
     });  
   }
 
   addRental = () => {
     this.setState({
       selectedCustomer: {},
-      selectedMovie: {}
+      selectedMovie: {},
+      statusCustomer: false,
+      statusMovie: false,
     }); 
   }
 
@@ -76,7 +82,9 @@ export class Store extends Component {
             <Container className="logo">
             </Container>
             <section>
-              < Checkout selectedCustomer={this.state.selectedCustomer} selectedMovie={this.state.selectedMovie} addRentalCallback={this.addRental}/>
+              < Checkout statusCustomer={this.state.statusCustomer} statusMovie={this.state.statusMovie} 
+              selectedCustomer={this.state.selectedCustomer} 
+              selectedMovie={this.state.selectedMovie} addRentalCallback={this.addRental}/>
             </section>
             <section>
             <Switch>

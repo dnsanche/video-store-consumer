@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import Rental from './Rental.js';
+import './Rental.css';
 
 export class Rentals extends Component {
 
@@ -28,16 +29,30 @@ export class Rentals extends Component {
     
     let rentalsList = this.state.rentals.map((rental, i) => {
       return (
-        <div key={i}>
           <Rental rental={rental}/>
-        </div>
       )}
     );
 
     return (
-      <div>
-        {rentalsList}
-      </div>
+      <section className="rentals-container">
+        <table class="table table-hover">
+          <thead class="thead-dark">
+            <tr>
+              <th>Rental Id</th>
+              <th>Checkout Date</th>
+              <th>Customer Id</th>
+              <th>Customer Name</th>
+              <th>Due Date</th>
+              <th>Move Id</th>
+              <th>Move Title</th>
+              <th>Returned</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rentalsList}
+          </tbody>
+        </table>
+      </section>
     )
   }
 };
