@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import './Customer.css';
-import { tr } from 'react-bootstrap';
-
 
 export class Customer extends Component {
   constructor(props) {
@@ -40,9 +38,9 @@ export class Customer extends Component {
 
   render() {
     const {id, name, address, city, state, postal_code, phone, 
-      account_credit, movies_checked_out_count  } = this.props.customer
+      account_credit, movies_checked_out_count, key  } = this.props.customer
     return (
-      <tr>
+      <tr key={key}>
           <td>{id}</td>
           <td>{name}</td>
           <td>{address}</td>

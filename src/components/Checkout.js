@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-import {Alert} from 'react-bootstrap'
 import './Checkout.css';
+import propTypes from 'prop-types';
 
 export class Checkout extends Component {
   constructor(props) {
@@ -67,5 +67,12 @@ export class Checkout extends Component {
     }
   }
 };
+
+Checkout.propTypes = {
+  checkoutMovie: propTypes.number.isRequired,
+  checkoutCustomer: propTypes.number.isRequired,
+  selectedCustomer: propTypes.object.isRequired,
+  selectedMovie: propTypes.object.isRequired
+}
 
 export default Checkout

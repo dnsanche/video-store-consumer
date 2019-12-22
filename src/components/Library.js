@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import axios from 'axios';
 import Movie from './Movie.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Row, Card, OverlayTrigger } from 'react-bootstrap';
+import { Row, Card } from 'react-bootstrap';
 
 export class Library extends Component {
   constructor(props) {

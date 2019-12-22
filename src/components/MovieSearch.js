@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Container, Row, Card, InputGroup, Button, FormControl } from 'react-bootstrap';
+import { Row, Card, InputGroup, Button, FormControl } from 'react-bootstrap';
 import "./MovieSearch.css";
 
 export class MovieSearch extends Component {
@@ -91,7 +91,6 @@ export class MovieSearch extends Component {
         <Row>
           {movieSearch}
         </Row>
-     
       </div>
     )
   }

@@ -13,9 +13,9 @@ export class Movie extends Component {
   }
 
   render() {
-    const selectCheckbox = <div>
+    const selectCheckbox = 
       <label>Select Movie <input type="checkbox" checked={this.props.selected} onChange={this.selectMovie}></input></label>
-    </div>
+
 
     return (
      <Card style={{width: '20em'}} >

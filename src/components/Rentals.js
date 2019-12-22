@@ -2,13 +2,11 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import Rental from './Rental.js';
 import './Rental.css';
-import { Table, Row } from 'react-bootstrap';
-
+import { Table } from 'react-bootstrap';
 
 export class Rentals extends Component {
-
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       rentals: []
@@ -31,13 +29,13 @@ export class Rentals extends Component {
     
     let rentalsList = this.state.rentals.map((rental, i) => {
       return (
-          <Rental rental={rental}/>
+        < Rental rental={rental} key={i} />
       )}
     );
 
     return (
       <Table striped bordered hieght='300'>
-          <thead class="thead-dark">
+          <thead className="thead-dark">
             <tr>
               <th>Rental Id</th>
               <th>Checkout Date</th>

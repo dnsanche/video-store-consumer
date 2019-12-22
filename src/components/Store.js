@@ -12,13 +12,13 @@ import MovieSearch from './MovieSearch';
 import Rentals from './Rentals';
 import Checkout from './Checkout';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Jumbotron, Container } from 'react-bootstrap';
+import { Navbar } from 'react-bootstrap';
 import './Store.css';
 import Home from './home.jpg'
 
 export class Store extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       selectedMovie: {},
@@ -99,18 +99,18 @@ export class Store extends Component {
             <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet"></link>
             <section>
               < Checkout  
-                checkoutMovie={this.state.checkoutMovie}
-                checkoutCustomer={this.state.checkoutCustomer}
-                selectedCustomer={this.state.selectedCustomer} 
-                selectedMovie={this.state.selectedMovie} addRentalCallback={this.addRental}/>
+                  checkoutMovie={this.state.checkoutMovie}
+                  checkoutCustomer={this.state.checkoutCustomer}
+                  selectedCustomer={this.state.selectedCustomer} 
+                  selectedMovie={this.state.selectedMovie} addRentalCallback={this.addRental}/>
             </section>
             <section>
             <Switch>
                 <Route path="/customers"> <Customers selectedCust={this.selectCustomer} unSelect={this.unSelect}/> </Route>
                 <Route path="/library"><Library selectMovie={this.selectedMovieCallback} unselectMovie={this.unselectMovieCallback} selectedMovieState={this.state.selectedMovie}/></Route>
                 <Route path="/movie_search"> <MovieSearch/> </Route>
-                <Route path="/rentals"> <Rentals updateRentalsCallback={this.updateRentals}/> </Route>
-                <Route path="/"><img src={Home} className="home_picture"/></Route>
+                <Route path="/rentals"> <Rentals/> </Route>
+                <Route path="/"><img src={Home} className="home_picture" alt="Cinema"/></Route>
             </Switch>
             </section>
         </Router>
