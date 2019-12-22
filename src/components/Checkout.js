@@ -31,11 +31,11 @@ export class Checkout extends Component {
   render() {
 
     const showCustomer = 
-      <h4> Selected Customer: { this.props.selectedCustomer.name } </h4>
+      <p> Selected Customer: { this.props.selectedCustomer.name } </p>
      
 
     const showMovie = 
-      <h4> Selected Movies: { this.props.selectedMovie.title} </h4>
+      <p> Selected Movies: { this.props.selectedMovie.title} </p>
       
     const showButton = 
         <input onClick ={this.checkOut} type="submit" value="Checkout"/>
@@ -44,7 +44,7 @@ export class Checkout extends Component {
       return ( 
       <div class="alert alert-success" role="alert">
         <div>
-          <h3>You are ready for checkout!</h3>
+          <h2>You are ready for checkout!</h2>
           { showCustomer } 
           { showMovie }
           { showButton }  
@@ -54,7 +54,7 @@ export class Checkout extends Component {
     else if ( this.props.checkoutMovie + this.props.checkoutCustomer === 1 ) {
       return ( 
         <div class="alert alert-warning" role="alert">
-          <h3>Please select a movie and a customer to complete checkout. </h3>
+          <h2>Please select a movie and a customer to complete checkout. </h2>
           { showCustomer } 
           { showMovie }        
         </div>  ) } 
